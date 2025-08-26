@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة تسجيل طفل جديد - Bright Kids</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #4A90E2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0.25rem 0;
+        }
+
+        .form-container {
+            padding: 2rem;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #FF6B35 0%, #4A90E2 100%);
+            height: 100%;
+            width: 25%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .step-indicator {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #4A90E2;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: #4A90E2;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #FF6B35;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .required {
+            color: #FF6B35;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4A90E2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .radio-item:hover {
+            border-color: #4A90E2;
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .radio-item input[type="radio"]:checked + span {
+            color: #4A90E2;
+            font-weight: 600;
+        }
+
+        .file-upload {
+            border: 3px dashed #4A90E2;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(74, 144, 226, 0.02);
+        }
+
+        .file-upload:hover {
+            border-color: #FF6B35;
+            background: rgba(255, 107, 53, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #4A90E2;
+            margin-bottom: 1rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e1e5e9;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 10px;
+        }
+
+        .footer a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #6BCF7F 0%, #4CAF50 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .success-message h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px dashed #4A90E2;
+        }
+
+        .ticket-header {
+            text-align: center;
+            border-bottom: 2px solid #e1e5e9;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 0.5rem;
+        }
+
+        .ticket-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-item {
+            padding: 0.5rem;
+            border-radius: 8px;
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #4A90E2;
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4A90E2;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">BK</div>
+            <h1>استمارة تسجيل طفل جديد</h1>
+            <p>مركز Bright Kids للحضانة - YADC7069</p>
+            <p>حي قرطبة، 46429، ينبع | +966 53 750 6160</p>
+        </div>
+
+        <div class="form-container">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Step Indicator -->
+            <div class="step-indicator" id="stepIndicator">
+                الخطوة 1 من 3: بيانات الطفل
+            </div>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>جاري إرسال الطلب...</p>
+            </div>
+
+            <!-- Form -->
+            <form id="registrationForm" enctype="multipart/form-data">
+                <div class="form-step" id="formContent">
+                    <div class="form-section">
+                        <h2 class="section-title">بيانات الطفل</h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="childName">الاسم الكامل للطفل <span class="required">*</span></label>
+                                <input type="text" id="childName" name="childName" required placeholder="أدخل الاسم الكامل">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birthDate">تاريخ الميلاد <span class="required">*</span></label>
+                                <input type="date" id="birthDate" name="birthDate" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="age">العمر <span class="required">*</span></label>
+                                <input type="text" id="age" name="age" required placeholder="مثال: سنتان و 6 أشهر">
+                            </div>
+
+                            <div class="form-group">
+                                <label>الجنس <span class="required">*</span></label>
+                                <div class="radio-group">
+                                    <label class="radio-item">
+                                        <input type="radio" name="gender" value="ذكر" required>
+                                        <span>ذكر</span>
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="gender" value="أنثى" required>
+                                        <span>أنثى</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nationality">الجنسية <span class="required">*</span></label>
+                                <input type="text" id="nationality" name="nationality" required placeholder="الجنسية">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birthPlace">مكان الميلاد <span class="required">*</span></label>
+                                <input type="text" id="birthPlace" name="birthPlace" required placeholder="مكان الميلاد">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>صورة الطفل <span class="required">*</span></label>
+                                <div class="file-upload" onclick="document.getElementById('childPhoto').click()">
+                                    <div class="file-upload-icon">📷</div>
+                                    <p>اضغط لرفع صورة الطفل</p>
+                                    <small>يُفضل صورة واضحة وحديثة</small>
+                                    <input type="file" id="childPhoto" name="childPhoto" accept="image/*" style="display: none;" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation" id="navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevStep()" disabled>السابق</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">التالي</button>
+                </div>
+            </form>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p>جميع الحقول المميزة بـ (*) مطلوبة</p>
+                <p>
+                    للمساعدة: +966 53 750 6160 | 
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=24.0857962992111%2C38.0875255905884" target="_blank">
+                        الموقع على الخريطة
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 3;
+        let formData = {};
+
+        const stepNames = [
+            'بيانات الطفل',
+            'بيانات ولي الأمر', 
+            'مراجعة وإرسال'
+        ];
+
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            const stepIndicator = document.getElementById('stepIndicator');
+            const prevBtn = document.getElementById('prevBtn');
+            
+            const percentage = (currentStep / totalSteps) * 100;
+            progressFill.style.width = percentage + '%';
+            
+            stepIndicator.textContent = `الخطوة ${currentStep} من ${totalSteps}: ${stepNames[currentStep - 1]}`;
+            
+            prevBtn.disabled = currentStep === 1;
+        }
+
+        function collectFormData() {
+            const form = document.getElementById('registrationForm');
+            const formDataObj = new FormData(form);
+            
+            for (let [key, value] of formDataObj.entries()) {
+                formData[key] = value;
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                collectFormData();
+                currentStep++;
+                updateProgress();
+                
+                if (currentStep === 2) {
+                    showStep2();
+                } else if (currentStep === 3) {
+                    showStep3();
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateProgress();
+                
+                if (currentStep === 1) {
+                    showStep1();
+                } else if (currentStep === 2) {
+                    showStep2();
+                }
+            }
+        }
+
+        function showStep1() {
+            const formContent = document.getElementById('formContent');
+            formContent.innerHTML = `
+                <div class="form-section">
+                    <h2 class="section-title">بيانات الطفل</h2>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="childName">الاسم الكامل للطفل <span class="required">*</span></label>
+                            <input type="text" id="childName" name="childName" required placeholder="أدخل الاسم الكامل" value="${formData.childName || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birthDate">تاريخ الميلاد <span class="required">*</span></label>
+                            <input type="date" id="birthDate" name="birthDate" required value="${formData.birthDate || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">العمر <span class="required">*</span></label>
+                            <input type="text" id="age" name="age" required placeholder="مثال: سنتان و 6 أشهر" value="${formData.age || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label>الجنس <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="ذكر" required ${formData.gender === 'ذكر' ? 'checked' : ''}>
+                                    <span>ذكر</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="gender" value="أنثى" required ${formData.gender === 'أنثى' ? 'checked' : ''}>
+                                    <span>أنثى</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nationality">الجنسية <span class="required">*</span></label>
+                            <input type="text" id="nationality" name="nationality" required placeholder="الجنسية" value="${formData.nationality || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birthPlace">مكان الميلاد <span class="required">*</span></label>
+                            <input type="text" id="birthPlace" name="birthPlace" required placeholder="مكان الميلاد" value="${formData.birthPlace || ''}">
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateNavigation();
+        }
+
+        function showStep2() {
+            const formContent = document.getElementById('formContent');
+            formContent.innerHTML = `
+                <div class="form-section">
+                    <h2 class="section-title">بيانات ولي الأمر</h2>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="parentName">اسم ولي الأمر <span class="required">*</span></label>
+                            <input type="text" id="parentName" name="parentName" required placeholder="الاسم الكامل لولي الأمر" value="${formData.parentName || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="relationship">صلة القرابة <span class="required">*</span></label>
+                            <select id="relationship" name="relationship" required>
+                                <option value="">اختر صلة القرابة</option>
+                                <option value="الأب" ${formData.relationship === 'الأب' ? 'selected' : ''}>الأب</option>
+                                <option value="الأم" ${formData.relationship === 'الأم' ? 'selected' : ''}>الأم</option>
+                                <option value="الجد" ${formData.relationship === 'الجد' ? 'selected' : ''}>الجد</option>
+                                <option value="الجدة" ${formData.relationship === 'الجدة' ? 'selected' : ''}>الجدة</option>
+                                <option value="العم" ${formData.relationship === 'العم' ? 'selected' : ''}>العم</option>
+                                <option value="العمة" ${formData.relationship === 'العمة' ? 'selected' : ''}>العمة</option>
+                                <option value="الخال" ${formData.relationship === 'الخال' ? 'selected' : ''}>الخال</option>
+                                <option value="الخالة" ${formData.relationship === 'الخالة' ? 'selected' : ''}>الخالة</option>
+                                <option value="أخرى" ${formData.relationship === 'أخرى' ? 'selected' : ''}>أخرى</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">رقم الجوال <span class="required">*</span></label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="+966 53 750 6160" value="${formData.phoneNumber || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emergencyPhone">رقم آخر للطوارئ <span class="required">*</span></label>
+                            <input type="tel" id="emergencyPhone" name="emergencyPhone" required placeholder="رقم جوال آخر للطوارئ" value="${formData.emergencyPhone || ''}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="example@email.com" value="${formData.email || ''}">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="address">العنوان <span class="required">*</span></label>
+                            <textarea id="address" name="address" rows="3" required placeholder="العنوان الكامل">${formData.address || ''}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateNavigation();
+        }
+
+        function showStep3() {
+            collectFormData();
+            
+            const formContent = document.getElementById('formContent');
+            formContent.innerHTML = `
+                <div class="form-section">
+                    <h2 class="section-title">مراجعة البيانات</h2>
+                    
+                    <div class="ticket">
+                        <div class="ticket-header">
+                            <div class="ticket-number">معاينة الطلب</div>
+                            <p>تاريخ التقديم: ${new Date().toLocaleDateString('ar-SA')}</p>
+                        </div>
+                        
+                        <div class="ticket-info">
+                            <div class="info-item">
+                                <div class="info-label">اسم الطفل</div>
+                                <div class="info-value">${formData.childName || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">تاريخ الميلاد</div>
+                                <div class="info-value">${formData.birthDate || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">العمر</div>
+                                <div class="info-value">${formData.age || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">الجنس</div>
+                                <div class="info-value">${formData.gender || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">اسم ولي الأمر</div>
+                                <div class="info-value">${formData.parentName || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">صلة القرابة</div>
+                                <div class="info-value">${formData.relationship || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">رقم الجوال</div>
+                                <div class="info-value">${formData.phoneNumber || 'غير محدد'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-label">البريد الإلكتروني</div>
+                                <div class="info-value">${formData.email || 'غير محدد'}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid #e1e5e9;">
+                            <p style="text-align: center; color: #666; font-size: 0.9rem;">
+                                يرجى مراجعة البيانات والتأكد من صحتها قبل الإرسال
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            const navigation = document.getElementById('navigation');
+            
+            if (currentStep === totalSteps) {
+                navigation.innerHTML = `
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">السابق</button>
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">إرسال الطلب</button>
+                `;
+            } else {
+                navigation.innerHTML = `
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="prevStep()" ${currentStep === 1 ? 'disabled' : ''}>السابق</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">التالي</button>
+                `;
+            }
+        }
+
+        async function submitForm() {
+            try {
+                // إظهار شاشة التحميل
+                document.getElementById('loading').classList.add('show');
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('navigation').style.display = 'none';
+                
+                // جمع البيانات النهائية
+                collectFormData();
+                
+                // إنشاء FormData للإرسال
+                const form = document.getElementById('registrationForm');
+                const submitData = new FormData(form);
+                
+                // إضافة البيانات المجمعة
+                for (const [key, value] of Object.entries(formData)) {
+                    if (typeof value === 'string') {
+                        submitData.set(key, value);
+                    }
+                }
+                
+                // إرسال الطلب للواجهة الخلفية
+                const response = await fetch('http://localhost:5000/api/registration/submit', {
+                    method: 'POST',
+                    body: submitData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // إخفاء شاشة التحميل
+                    document.getElementById('loading').classList.remove('show');
+                    
+                    // عرض رسالة النجاح والكوبون
+                    showSuccessMessage(result);
+                } else {
+                    throw new Error(result.message || 'حدث خطأ غير متوقع');
+                }
+                
+            } catch (error) {
+                console.error('خطأ في إرسال الطلب:', error);
+                
+                // إخفاء شاشة التحميل
+                document.getElementById('loading').classList.remove('show');
+                
+                // عرض رسالة خطأ
+                showErrorMessage(error.message);
+                
+                // إظهار النموذج مرة أخرى
+                document.getElementById('formContent').style.display = 'block';
+                document.getElementById('navigation').style.display = 'flex';
+            }
+        }
+
+        function showSuccessMessage(result) {
+            const formContent = document.getElementById('formContent');
+            const ticketData = result.ticket_data;
+            
+            formContent.innerHTML = `
+                <div class="success-message">
+                    <h2>🎉 تم إرسال الطلب بنجاح!</h2>
+                    <p>رقم التسجيل: <strong>${ticketData.registration_number}</strong></p>
+                    <p>سيتم التواصل معكم خلال 24 ساعة</p>
+                </div>
+                
+                <div class="ticket">
+                    <div class="ticket-header">
+                        <div class="ticket-number">${ticketData.registration_number}</div>
+                        <p>كوبون تسجيل طفل جديد</p>
+                        <p>تاريخ التقديم: ${ticketData.submission_date}</p>
+                    </div>
+                    
+                    <div class="ticket-info">
+                        <div class="info-item">
+                            <div class="info-label">اسم الطفل</div>
+                            <div class="info-value">${ticketData.child_name}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">اسم ولي الأمر</div>
+                            <div class="info-value">${ticketData.parent_name}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">رقم الجوال</div>
+                            <div class="info-value">${ticketData.phone}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">البريد الإلكتروني</div>
+                            <div class="info-value">${ticketData.email}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">حالة الطلب</div>
+                            <div class="info-value" style="color: #FF6B35; font-weight: bold;">${ticketData.status}</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid #e1e5e9; text-align: center;">
+                        <p style="color: #4A90E2; font-weight: 600;">${ticketData.nursery_info.name}</p>
+                        <p style="color: #666; font-size: 0.9rem;">${ticketData.nursery_info.address}</p>
+                        <p style="color: #666; font-size: 0.9rem;">${ticketData.nursery_info.phone} | ${ticketData.nursery_info.license}</p>
+                    </div>
+                </div>
+            `;
+            
+            // إظهار المحتوى
+            formContent.style.display = 'block';
+            
+            // إخفاء شريط التقدم ومؤشر الخطوة
+            document.querySelector('.progress-bar').style.display = 'none';
+            document.getElementById('stepIndicator').style.display = 'none';
+        }
+
+        function showErrorMessage(message) {
+            const formContent = document.getElementById('formContent');
+            
+            // إضافة رسالة خطأ في أعلى النموذج
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <strong>خطأ:</strong> ${message}
+                <br><small>يرجى المحاولة مرة أخرى أو التواصل معنا على +966 53 750 6160</small>
+            `;
+            
+            formContent.insertBefore(errorDiv, formContent.firstChild);
+            
+            // إزالة رسالة الخطأ بعد 10 ثوان
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 10000);
+        }
+
+        // File upload handling
+        document.addEventListener('change', function(e) {
+            if (e.target.type === 'file') {
+                const file = e.target.files[0];
+                if (file) {
+                    const fileUpload = e.target.parentElement;
+                    fileUpload.innerHTML = `
+                        <div class="file-upload-icon">✅</div>
+                        <p>تم رفع الملف: ${file.name}</p>
+                        <small>اضغط لتغيير الملف</small>
+                        <input type="file" id="${e.target.id}" name="${e.target.name}" accept="${e.target.accept}" style="display: none;" required>
+                    `;
+                    fileUpload.style.borderColor = '#6BCF7F';
+                    fileUpload.style.background = 'rgba(108, 207, 127, 0.1)';
+                    
+                    // إعادة ربط حدث النقر
+                    fileUpload.onclick = function() {
+                        document.getElementById(e.target.id).click();
+                    };
+                }
+            }
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
+

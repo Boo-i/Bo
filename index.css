@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tajawal', Arial, sans-serif;
+  direction: rtl;
+  text-align: right;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.form-step {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.progress-bar {
+  transition: width 0.3s ease-in-out;
+}
+
+.input-field {
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.15);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+}
+
+.card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.file-upload-area {
+  border: 2px dashed #4A90E2;
+  transition: all 0.3s ease;
+}
+
+.file-upload-area:hover {
+  border-color: #FF6B35;
+  background-color: rgba(255, 107, 53, 0.05);
+}
+
+.file-upload-area.dragover {
+  border-color: #FF6B35;
+  background-color: rgba(255, 107, 53, 0.1);
+  transform: scale(1.02);
+}
